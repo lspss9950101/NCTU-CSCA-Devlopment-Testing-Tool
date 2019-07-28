@@ -3,8 +3,7 @@ This tool only works for testing server.
 # Usage #
 ### Starting Server ###
 Below command will start a internal server and open an application page in the browser.\n
-<pre><code>npm run start
-</code><pre>
+```npm run start
 ### Making a Request ###
 #### Instruction ####
 Logging the CSCA page first to get cookie.\n
