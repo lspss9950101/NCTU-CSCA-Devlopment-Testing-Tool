@@ -107,7 +107,7 @@ app.post('/', (req, res)=>{
 	fetchXSRFToken(req, res);
 });
 
-app.listen(parseInt(port), ()=>{
+app.listen(process.env.PORT || parseInt(port), ()=>{
 	console.log('Listening port ' + port + '.');
 	exec('cmd /c start http://localhost:' + port, (err, stdout, stderr) => {
 		if(err)return;
