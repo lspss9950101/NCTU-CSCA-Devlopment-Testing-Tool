@@ -8,7 +8,7 @@ npm run start
 ```
 ### Making a Request ###
 #### Instruction ####
-Logging the CSCA page first to get cookie.  
+Logging in the CSCA page first to get cookie.  
 Copy the the session field of the cookie and paste it into the 'Session Cookie' field.  
 Congigure the detail of testing request.  
 Click send button to fetch response.  
