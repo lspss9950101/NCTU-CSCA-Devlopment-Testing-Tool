@@ -4,7 +4,7 @@ This tool works for both testing server and live release server.
 ### Starting Server ###
 Below command will start a internal server and open an application page in the browser.  
 ```md
-npm run start -- [port]
+npm run start -- [port()]
 ```
 ### Making a Request ###
 #### Instruction ####
