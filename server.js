@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var axios = require('axios');
+var {exec} = require('child_process');
 
 app.use(express.json());
 app.use(express.static(__dirname + '/dist'));
@@ -13,6 +14,8 @@ app.get('/', (req, res)=>{
 	}
 	res.sendFile("index.html", option);
 });
+
+var port = parseInt(process.argv[2]);
 
 var token = '';
 
@@ -104,6 +107,11 @@ app.post('/', (req, res)=>{
 	fetchXSRFToken(req, res);
 });
 
-app.listen(8000, ()=>{
-	console.log('Listening port 8000.');
+app.listen(parseInt(port), ()=>{
+	console.log('Listening port ' + port + '.');
+	exec('cmd /c start http://localhost:' + port, (err, stdout, stderr) => {
+		if(err)return;
+		console.log(`stdout: ${stdout}`);
+		console.log(`stderr: ${stderr}`);
+	});
 });
