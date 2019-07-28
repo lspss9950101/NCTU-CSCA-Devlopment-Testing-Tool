@@ -16,12 +16,15 @@ app.get('/', (req, res)=>{
 
 var token = '';
 
-const fetchXSRFToken = (method, url, headers, domain, body, response, res) => {
-	let XSRFUrl;
+const fetchXSRFToken = (req, res) => {
+	let method = req.body.method;
+	let domain = req.body.domain;
+	let url = req.body.url;
+	let headers = req.body.headers;
+	let body = req.body.body;
+	let response = {};
 	
-	if(domain == '0')XSRFUrl = 'http://140.113.17.22:1234/students/head/';
-	else if(domain == '1')XSRFUrl = 'http://140.113.17.22:1234/assistants/head/';
-	else if(domain == '2')XSRFUrl = 'http://140.113.17.22:1234/teachers/head/';
+	let XSRFUrl = domain;
 	
 	let options = {
 		url: XSRFUrl,
@@ -50,7 +53,7 @@ const fetchXSRFToken = (method, url, headers, domain, body, response, res) => {
 		
 		if(method == 'POST'){		
 			options = {
-				url: url,
+				url: domain + url,
 				method: method,
 				headers: headers,
 				data: JSON.parse(body)
@@ -58,7 +61,7 @@ const fetchXSRFToken = (method, url, headers, domain, body, response, res) => {
 			console.log('Body' + JSON.stringify(options.data));
 		}else{
 			options = {
-				url: url,
+				url: domain + url,
 				method: method,
 				headers: headers
 			};
@@ -97,15 +100,8 @@ const JSONAppend = (json, key, val) => {
 }
 
 app.post('/', (req, res)=>{
-	let method = req.body.method;
-	let url = req.body.url;
-	let headers = req.body.headers;
-	let domain = req.body.domain;
-	let body = req.body.body;
-	let response = {};
-	
 	//console.log('req.body = ' + body);
-	fetchXSRFToken(method, url, headers, domain, body, response, res);
+	fetchXSRFToken(req, res);
 });
 
 app.listen(8000, ()=>{
