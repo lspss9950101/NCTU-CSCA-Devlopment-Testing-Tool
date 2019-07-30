@@ -3,8 +3,10 @@ var app = express();
 var path = require('path');
 var axios = require('axios');
 var {exec} = require('child_process');
+var cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.static(__dirname + '/dist'));
 app.use(express.static(__dirname));
 
@@ -81,7 +83,6 @@ const fetchXSRFToken = (req, res) => {
 		})
 		.then(()=>{
 			response = {response: response.response, status:'ok'};
-			res.set('Access-Control-Allow-Origin', '*');
 			res.json(response);
 			res.end();
 		})
