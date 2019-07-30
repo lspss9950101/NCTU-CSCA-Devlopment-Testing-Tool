@@ -81,6 +81,7 @@ const fetchXSRFToken = (req, res) => {
 		})
 		.then(()=>{
 			response = {response: response.response, status:'ok'};
+			res.set('Access-Control-Allow-Origin', '*');
 			res.json(response);
 			res.end();
 		})
